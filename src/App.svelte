@@ -1,7 +1,8 @@
 <script lang="ts">
   import { mdiThumbUp, mdiThumbDown } from '@mdi/js'
   import SvgIcon from './components/icons/SvgIcon.svelte'
-  import { Motion, useTransform, useMotionValue } from 'svelte-motion'
+  import Motion from 'svelte-motion/src/motion/MotionSSR.svelte';
+  import {  useTransform, useMotionValue } from 'svelte-motion'
   import { shuffle } from './logic/utils'
 
   const POINT_INCREMENT = 100
