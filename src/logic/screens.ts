@@ -1,5 +1,5 @@
 export enum ScreenTypes {
   Welcome,
-  Swipe,
+  Swiper,
   Results,
 }

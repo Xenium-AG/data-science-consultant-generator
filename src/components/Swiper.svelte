@@ -6,7 +6,7 @@
   import { useTransform, useMotionValue } from 'svelte-motion'
   import { shuffle } from '../logic/utils'
   import { ScreenTypes } from '../logic/screens'
-  import { screen, points } from '../stores/store'
+  import { screen, points, imgList } from '../stores/store'
 
   export let config
 
@@ -17,7 +17,6 @@
   let currentImage = EMPTY_IMAGE
   let currentSolution = ''
 
-  let imgList = []
   let imgIndex = -1
 
   const x = useMotionValue(0)
@@ -63,8 +62,8 @@
 
   function nextImage() {
     imgIndex++
-    if (imgIndex < imgList.length) {
-      const current = imgList[imgIndex]
+    if (imgIndex < $imgList.length) {
+      const current = $imgList[imgIndex]
       currentImage = current.url
       currentSolution = current.solution
     } else {
@@ -74,7 +73,10 @@
 
   $: {
     if (config?.swiper?.images) {
-      imgList = shuffle(config.swiper.images).slice(0, config.swiper.howManyToShow)
+      $imgList = shuffle(config.swiper.images.map(img=>({...img, url: config.basePath + img.url}))).slice(
+        0,
+        config.swiper.howManyToShow,
+      )
       nextImage()
     }
   }
@@ -82,11 +84,11 @@
 
 <div class="relative mt-5 block w-xs p-3 justify-self-center flex justify-end">
   <span class="font-light block" style="align-self: center"
-    >{Math.max(imgIndex, 0)}/{imgList.length}</span
+    >{Math.max(imgIndex, 0)}/{$imgList.length}</span
   >
 </div>
 
-<div class="relative w-xs h-xs ml-5 mb-15">
+<div class="relative w-xs h-xs ml-5 mb-15 no-touch">
   <div class="absolute">
     <div
       class="absolute ml-1 mt-1 transform rotate-1 shadow-md rounded-md bg-gray-100 block w-xs h-xs p-3 justify-self-center select-none active:shadow-sm transition-shadow"
@@ -142,7 +144,7 @@
         {#key currentImage}
           <img
             transition:fade|local={{ duration: 150 }}
-            class="inset-0 w-full h-full absolute object-cover rounded-xs pointer-events-none"
+            class="inset-0 w-full h-full absolute object-cover rounded-xs pointer-events-none image-render-pixel"
             src={currentImage}
             alt=""
           />
@@ -155,7 +157,7 @@
   <button class="ml-5 button" aria-label="No" on:click={no}>
     <SvgIcon d={mdiThumbDownOutline} fill={'#f33'} />
   </button>
-  <span class="font-semibold block" style="align-self: center">Xenianer?</span>
+  <span class="font-semibold block p-3" style="align-self: center">Real?</span>
   <button class="mr-5 button" aria-label="No" on:click={yes}>
     <SvgIcon d={mdiThumbUpOutline} fill={'#1c2'} />
   </button>
@@ -164,5 +166,8 @@
 <style>
   .button {
     @apply bg-transparent p-6 shadow-md rounded-lg bg-white hover:bg-gray-100 border-none w-24 h-24 cursor-pointer flex items-center active:shadow-sm transition-shadow;
+  }
+  .no-touch {
+    touch-action: none;
   }
 </style>

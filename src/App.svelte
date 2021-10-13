@@ -15,7 +15,7 @@
 <main class="max-w-sm w-full m-auto grid grid-cols-1 gap-3">
   {#if $screen === ScreenTypes.Welcome}
     <Welcome {config} />
-  {:else if $screen === ScreenTypes.Swipe}
+  {:else if $screen === ScreenTypes.Swiper}
     <Swiper {config} />
   {:else}
     <Results {config} />
@@ -45,6 +45,6 @@
     flex-direction: column;
     height: 100%;
     overflow-x: hidden;
-    touch-action: none;
+    
   }
 </style>

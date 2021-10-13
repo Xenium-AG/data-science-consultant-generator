@@ -24,7 +24,7 @@
   </div>
   <button
     class="mt-10 mb-5 w-full p-3 bg-transparent rounded-lg cursor-pointer border border-solid border-width-2 border-green-500 text-green-500 font-light text-5xl uppercase hover:(bg-green-500 text-white) active:bg-green-600"
-    on:click={() => ($screen = ScreenTypes.Swipe)}>Start</button
+    on:click={() => ($screen = ScreenTypes.Swiper)}>Start</button
   >
 </div>
 
