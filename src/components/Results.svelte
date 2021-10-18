@@ -105,6 +105,10 @@
   <div class="my-10 h-15 text-center mx-4" style="align-self: center">
     {comment}
   </div>
+  <button
+    class="mt-10 mb-5 w-full p-3 bg-transparent rounded-lg cursor-pointer border border-solid border-width-2 border-green-500 text-green-500 font-light text-3xl uppercase hover:(bg-green-500 text-white) active:bg-green-600"
+    on:click={() => (window.location.reload())}>Neuer Versuch</button
+  >
 </div>
 <div
   class="relative w-sm shadow-md rounded-md bg-white w-xs p-3 mb-3 justify-self-center flex flex-col justify-between"
@@ -118,7 +122,7 @@
           src={url}
           alt=""
         />
-        {#if solution==='yes'}
+        {#if solution === 'yes'}
           <svg
             class="absolute left-0 top-0 z-10"
             viewBox="0 0 150 150"
@@ -130,7 +134,7 @@
             <path d="M14,26 L 22,33 L 35,16" />
           </svg>
         {:else}
-        <svg
+          <svg
             class="absolute left-0 top-0 z-10"
             viewBox="0 0 150 150"
             fill="none"
@@ -148,7 +152,8 @@
 </div>
 
 <style>
-  svg {
+  svg,
+  button {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     @apply tabular-nums;

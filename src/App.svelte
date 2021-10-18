@@ -8,7 +8,7 @@
 
   let config
   ;(async () => {
-    config = await (await fetch('/data/config.json')).json()
+    config = await (await fetch('./data/config.json')).json()
   })()
 </script>
 

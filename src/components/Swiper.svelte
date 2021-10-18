@@ -144,7 +144,7 @@
         {#key currentImage}
           <img
             transition:fade|local={{ duration: 150 }}
-            class="inset-0 w-full h-full absolute object-cover rounded-xs pointer-events-none image-render-pixel"
+            class="inset-0 w-full h-full absolute object-none rounded-xs pointer-events-none image-render-pixel"
             src={currentImage}
             alt=""
           />
