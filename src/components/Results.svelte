@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { ScreenTypes } from '../logic/screens'
   import Motion from 'svelte-motion/src/motion/MotionSSR.svelte'
   import { transform, useMotionValue } from 'svelte-motion'
-  import { screen, points, imgList } from '../stores/store'
+  import { points, imgList } from '../stores/store'
   export let config
   const x = useMotionValue(0)
   let color = '#fff'
@@ -33,8 +32,7 @@
     const comments = config.results.comments.filter(
       (q) => successFraction >= q.minFraction,
     )
-    console.log(successFraction)
-    console.log(config.results.comments)
+
     if (comments.length > 0) {
       comment = comments[comments.length - 1].text
     } else {
@@ -107,7 +105,7 @@
   </div>
   <button
     class="mt-10 mb-5 w-full p-3 bg-transparent rounded-lg cursor-pointer border border-solid border-width-2 border-green-500 text-green-500 font-light text-3xl uppercase hover:(bg-green-500 text-white) active:bg-green-600"
-    on:click={() => (window.location.reload())}>Neuer Versuch</button
+    on:click={() => window.location.reload()}>Neuer Versuch</button
   >
 </div>
 <div

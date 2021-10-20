@@ -5,9 +5,12 @@
 
   import { screen } from './stores/store'
   import { ScreenTypes } from './logic/screens'
+  import { logPageView } from './logic/utils'
 
   let config
   ;(async () => {
+    console.log('Init')
+    logPageView()
     config = await (await fetch('./data/config.json')).json()
   })()
 </script>
@@ -45,6 +48,5 @@
     flex-direction: column;
     height: 100%;
     overflow-x: hidden;
-    
   }
 </style>

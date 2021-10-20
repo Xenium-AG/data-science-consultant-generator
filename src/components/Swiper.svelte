@@ -73,10 +73,12 @@
 
   $: {
     if (config?.swiper?.images) {
-      $imgList = shuffle(config.swiper.images.map(img=>({...img, url: config.basePath + img.url}))).slice(
-        0,
-        config.swiper.howManyToShow,
-      )
+      $imgList = shuffle(
+        config.swiper.images.map((img) => ({
+          ...img,
+          url: config.basePath + img.url,
+        })),
+      ).slice(0, config.swiper.howManyToShow)
       nextImage()
     }
   }

@@ -1,0 +1,119 @@
+{
+  "basePath": "/data/",
+  "welcome": {
+    "markdownFile": "welcome.md"
+  },
+  "swiper": {
+    "howManyToShow": 10,
+    "images": [
+      {
+        "url": "img/Fake_Bild1.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild2.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild3.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild4.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild5.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild6.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild7.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild8.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild9.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Fake_Bild10.png",
+        "solution": "no"
+      },
+      {
+        "url": "img/Real_1.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_2.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_3.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_4.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_5.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_6.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_7.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_8.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_9.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_10.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_11.png",
+        "solution": "yes"
+      },
+      {
+        "url": "img/Real_12.png",
+        "solution": "yes"
+      }
+    ]
+  },
+  "results": {
+    "comments": [
+      {
+        "minFraction": 0,
+        "text": "Das kann noch besser werden!"
+      },
+      {
+        "minFraction": 0.5,
+        "text": "Immerhin mehr als die Hälfte!"
+      },
+      {
+        "minFraction": 0.8,
+        "text": "Fast Perfekt! Aber anscheinend konnte dich unsere KI doch noch in die Falle locken!"
+      },
+      {
+        "minFraction": 1,
+        "text": "Herzlichen Glückwunsch! Deine MI (Menschliche Intelligenz) schlägt unsere KI (Künstliche Intelligenz)"
+      }
+    ]
+  }
+}

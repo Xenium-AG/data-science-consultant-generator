@@ -2,7 +2,7 @@
   import { ScreenTypes } from '../logic/screens'
   import { screen } from '../stores/store'
   import SvelteMarkdown from 'svelte-markdown'
-  
+
   let markdown = ''
 
   export let config
@@ -10,7 +10,9 @@
   $: {
     if (config?.welcome?.markdownFile) {
       ;(async () => {
-        markdown = await (await fetch(config.basePath + config.welcome.markdownFile)).text()
+        markdown = await (
+          await fetch(config.basePath + config.welcome.markdownFile)
+        ).text()
       })()
     }
   }
