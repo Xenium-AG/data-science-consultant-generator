@@ -3,14 +3,13 @@
   import { fade } from 'svelte/transition'
   import SvgIcon from './icons/SvgIcon.svelte'
   import Motion from 'svelte-motion/src/motion/MotionSSR.svelte'
-  import { useTransform, useMotionValue } from 'svelte-motion'
+  import { useTransform, useMotionValue, MotionValue } from 'svelte-motion'
   import { shuffle } from '../logic/utils'
   import { ScreenTypes } from '../logic/screens'
-  import { screen, points, imgList } from '../stores/store'
+  import { screen, answers, imgList } from '../stores/store'
 
   export let config
 
-  const POINT_INCREMENT = 1
   const EMPTY_IMAGE =
     'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
 
@@ -20,6 +19,7 @@
   let imgIndex = -1
 
   const x = useMotionValue(0)
+
   const xInput = [-30, 0, 30]
   const color = useTransform(x, xInput, ['#f33', 'rgb(68, 0, 255)', '#1c2'])
   const tickPath = useTransform(x, [10, 30], [0, 1])
@@ -37,18 +37,19 @@
   let capTick: StrokeCap = 'butt'
   tickPath.onChange((change) => (capTick = change > 0 ? 'round' : 'butt'))
 
-  function dragEnd(x) {
+  function dragEnd(x: MotionValue<number>) {
+    //@ts-ignore
     if (x.current <= -30) {
       no()
+      //@ts-ignore
     } else if (x.current >= 30) {
       yes()
     }
+    x.set(0)
   }
 
   function givePoints(answer, solution) {
-    if (answer === solution) {
-      $points += POINT_INCREMENT
-    }
+    $answers = [...$answers, answer]
   }
   function yes() {
     givePoints('yes', currentSolution)
@@ -102,9 +103,11 @@
   <Motion
     drag="x"
     dragConstraints={{ left: 0, right: 0 }}
+    dragElastic={1}
     style={{ x, rotate: xRot }}
-    dragTransition={{ bounceStiffness: 6000, bounceDamping: 250 }}
+    dragTransition={{ bounceStiffness: 60000, bounceDamping: 250 }}
     onDragEnd={() => dragEnd(x)}
+    
     let:motion
   >
     <div

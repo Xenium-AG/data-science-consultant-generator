@@ -1,12 +1,19 @@
 <script lang="ts">
   import Motion from 'svelte-motion/src/motion/MotionSSR.svelte'
+  import { mdiRobot, mdiAccount } from '@mdi/js'
   import { transform, useMotionValue } from 'svelte-motion'
-  import { points, imgList } from '../stores/store'
+  import { answers, imgList } from '../stores/store'
+  import SvgIcon from './icons/SvgIcon.svelte'
   export let config
   const x = useMotionValue(0)
   let color = '#fff'
   $: color = transform(0.5, [0, 1], ['#f33', '#1c2'])
-
+  let points
+  $: points = $answers.reduce(
+    (ans, val, i) => ($imgList[i].solution === val ? ans + 1 : ans),
+    0,
+  )
+  console.log(points)
   let successFraction = 1
   let max = 1
   let circleVariants = {}
@@ -15,14 +22,16 @@
   let images = []
 
   let progress = 0
+
   const moveProgress = () => {
     progress = 0
+
     const interval = setInterval(() => {
       progress += 1
-      if (progress === $points) {
+      if (progress === points) {
         clearInterval(interval)
       }
-    }, (1000 / ($points + 1)) | 0)
+    }, (1000 / (points + 1)) | 0)
   }
   const padProgress = (progress, max) => {
     return progress.toString().padStart(('' + max).length, '0')
@@ -44,7 +53,7 @@
       loaded = true
       max = config.swiper.howManyToShow
       images = config.swiper.images
-      successFraction = $points / max
+      successFraction = points / max
       circleVariants = {
         hidden: {
           opacity: 1,
@@ -121,9 +130,19 @@
           alt=""
         />
         {#if solution === 'yes'}
+          <span class="absolute w-5 h-5 p-1 rounded-br-5px bg-light-50 bg-opacity-50">
+            <SvgIcon d={mdiAccount} fill={'#384BFF'} /></span
+          >
+        {:else}
+          <span class="absolute w-5 h-5 p-1 rounded-br-5px bg-light-50 bg-opacity-50">
+            <SvgIcon d={mdiRobot} fill={'#115'} /></span
+          >
+        {/if}
+        {#if solution === $answers[i]}
+        
           <svg
-            class="absolute left-0 top-0 z-10"
-            viewBox="0 0 150 150"
+            class="absolute left-2 top-2 w-5 z-10"
+            viewBox="0 0 40 40"
             fill="none"
             stroke-width="5"
             stroke="#1c2"
@@ -133,8 +152,8 @@
           </svg>
         {:else}
           <svg
-            class="absolute left-0 top-0 z-10"
-            viewBox="0 0 150 150"
+            class="absolute left-2 top-2 w-5 z-10"
+            viewBox="0 0 40 40"
             fill="none"
             stroke-width="5"
             stroke="#f33"
