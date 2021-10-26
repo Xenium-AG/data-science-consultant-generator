@@ -111,12 +111,8 @@
         "text": "Das kann noch besser werden!"
       },
       {
-        "minFraction": 0.5,
-        "text": "Immerhin mehr als die Hälfte!"
-      },
-      {
         "minFraction": 0.8,
-        "text": "Fast Perfekt! Aber anscheinend konnte dich unsere KI doch noch in die Falle locken!"
+        "text": "Fast perfekt..."
       },
       {
         "minFraction": 1,
